@@ -6,8 +6,8 @@ module.exports.authorizeUser = (req, res, next) => {
 		method: "POST",
 		url: "http://tocstack.com:5555/login",
 		body: {
-			email: "sejal@gmail.com",
-			password: "123456"
+			email: req.body.email,
+			password: req.body.password
 		},
 		json: true
 	};
