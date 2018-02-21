@@ -7,7 +7,6 @@ const multer = require('multer');
 const authorizeUser = require('./controllers/authorizeUser').authorizeUser;
 
 const port = process.env.PORT || 1111;
-const mongoURI = 'mongodb://sejal:sejal@ds119772.mlab.com:19772/xltomon';
 global.__base = __dirname;
 
 
