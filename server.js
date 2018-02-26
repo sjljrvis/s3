@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const multer = require('multer');
 const authorizeUser = require('./controllers/authorizeUser').authorizeUser;
@@ -10,12 +11,21 @@ const port = process.env.PORT || 1111;
 global.__base = __dirname;
 
 
+let app = express();
+
+app.db = mongoose.createConnection('mongodb://sejal:sejal@ds119772.mlab.com:19772/xltomon');
+app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
+app.db.once('open', function () {
+	console.log('mongodb://sejal:sejal@ds119772.mlab.com:19772/xltomon');
+});
+
+
 if (!fs.existsSync(__base + '/fileStorage/')) {
 	fs.mkdirSync(__base + '/fileStorage/')
 }
-
-let app = express();
 app.use(express.static(__dirname + '/fileStorage'));
+
+require('./models').models(app,mongoose);
 
 let storage = multer.diskStorage({
 	destination: function (req, file, cb) {
