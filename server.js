@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const multer = require('multer');
 const authorizeUser = require('./controllers/authorizeUser').authorizeUser;
