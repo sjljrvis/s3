@@ -36,7 +36,7 @@ let upload = multer({ //multer settings
 }).single('file');
 
 app.get("/" , (req,res)=>{
-res.json({status:true,message:"success"})
+res.json({status:true,message:"success and testing"})
 })
 
 app.post('/', authorizeUser, upload, (req, res) => {
