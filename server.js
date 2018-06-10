@@ -35,6 +35,9 @@ let upload = multer({ //multer settings
 	storage: storage
 }).single('file');
 
+app.get("/" , (req,res)=>{
+res.json({status:true,message:"success"})
+})
 
 app.post('/', authorizeUser, upload, (req, res) => {
 	if (!fs.existsSync(__base + '/fileStorage/' + req.userName)) {
